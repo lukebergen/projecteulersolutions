@@ -34,15 +34,6 @@ func main() {
 	fmt.Printf("Time taken: %d", time.Now().Sub(start))
 }
 
-func contains(s []int64, e int64) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
-}
-
 func isPrime(n int64) bool {
 	start := int64(2)
 	end := n/int64(2) + 1

@@ -7,3 +7,9 @@ func BenchmarkMain(b *testing.B) {
 		main()
 	}
 }
+
+func TestPow(t *testing.T) {
+	if pow(2, 3) != 8 {
+		t.Error("pow(2, 3) should have been 8")
+	}
+}

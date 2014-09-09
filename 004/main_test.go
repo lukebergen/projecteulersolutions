@@ -3,16 +3,16 @@ package main
 import "testing"
 
 func TestIsPalindrome(t *testing.T) {
-	if x := isPalindrome(1234); x {
+	if isPalindrome(1234) {
 		t.Error("1234 should not have been a palindrome")
 	}
-	if x := isPalindrome(12345); x {
+	if isPalindrome(12345) {
 		t.Error("12345 should not have been a palindrome")
 	}
-	if x := isPalindrome(1221); !x {
+	if !isPalindrome(1221) {
 		t.Error("1221 should not have been a palindrome")
 	}
-	if x := isPalindrome(12321); !x {
+	if !isPalindrome(12321) {
 		t.Error("12321 should have been a palindrome")
 	}
 }

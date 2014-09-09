@@ -1,12 +1,13 @@
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"math"
+)
 
 const n int64 = 600851475143
 
 func main() {
-	start := time.Now()
 	primes := []int64{2, 3, 5}
 	result := n
 	for {
@@ -31,13 +32,12 @@ func main() {
 		}
 	}
 	fmt.Printf("result: %d\n", result)
-	fmt.Printf("Time taken: %d", time.Now().Sub(start))
 }
 
 func isPrime(n int64) bool {
 	start := int64(2)
-	end := n/int64(2) + 1
-	for i := start; i < end; i++ {
+	end := int64(math.Ceil(math.Sqrt(float64(n))))
+	for i := start; i <= end; i++ {
 		if n%i == 0 {
 			return false
 		}

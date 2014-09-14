@@ -1,16 +1,13 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "strconv"
 
 func main() {
 	// fmt.Printf("result: %d\n", mainAsync(1)) //    72818811 ns/op
 	// fmt.Printf("result: %d\n", mainAsync(2)) //    72818811 ns/op
 	// fmt.Printf("result: %d\n", mainAsync(10)) //   73350902 ns/op
 	// fmt.Printf("result: %d\n", mainAsync(20)) //   73034246 ns/op
-	fmt.Printf("result: %d\n", mainSync()) //      70225353 ns/op
+	// fmt.Printf("result: %d\n", mainSync()) //      70225353 ns/op
 }
 
 func mainAsync(threads int) int {
@@ -24,17 +21,27 @@ func mainAsync(threads int) int {
 	best := 0
 	n := 0
 	gors := threads
+	// timesSpentWaiting := 0
+	iterations := 0
+	nPals := 0
 	for gors > 0 {
+		iterations++
 		select {
 		case n = <-palindromes:
-			// fmt.Printf("Received palindrome %d off channel\n", n)
+			nPals++
 			if n > best {
 				best = n
 			}
 		case <-done:
 			gors--
+			//	default:
+			//		timesSpentWaiting++
 		}
 	}
+	// the result of uncommenting the default case above, the initialization around line 27, and the Printf below
+	// demonstrates that this main thread spends most of its time waiting for the other go routines to feed it
+	// palindromes. i.e. this loop doesn't seem to be the bottleneck.
+	// fmt.Printf("iterations: %d, times spent waiting: %d. Also, number of palindromes: %d\n", iterations, timesSpentWaiting, nPals)
 	return best
 }
 

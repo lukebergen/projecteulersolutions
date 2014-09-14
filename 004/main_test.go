@@ -17,30 +17,35 @@ func TestIsPalindrome(t *testing.T) {
 	}
 }
 
+// 71373532 ns/op
 func BenchmarkMainSync(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		mainSync()
 	}
 }
 
+// 74767508 ns/op
 func BenchmarkMainAsync1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		mainAsync(1)
 	}
 }
 
+// 74928701 ns/op
 func BenchmarkMainAsync2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		mainAsync(2)
 	}
 }
 
+// 73607226 ns/op
 func BenchmarkMainAsync10(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		mainAsync(10)
 	}
 }
 
+// 74910953 ns/op
 func BenchmarkMainAsync20(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		mainAsync(20)

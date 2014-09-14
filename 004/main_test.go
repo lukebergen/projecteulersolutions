@@ -17,8 +17,32 @@ func TestIsPalindrome(t *testing.T) {
 	}
 }
 
-func BenchmarkMain(b *testing.B) {
+func BenchmarkMainSync(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		main()
+		mainSync()
+	}
+}
+
+func BenchmarkMainAsync1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		mainAsync(1)
+	}
+}
+
+func BenchmarkMainAsync2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		mainAsync(2)
+	}
+}
+
+func BenchmarkMainAsync10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		mainAsync(10)
+	}
+}
+
+func BenchmarkMainAsync20(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		mainAsync(20)
 	}
 }
